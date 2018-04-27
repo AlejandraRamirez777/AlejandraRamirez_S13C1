@@ -7,11 +7,13 @@ using namespace std;
 
 int main () {
 
-    double v = 0.0001;
+    //double v = 0.01;
+    double v = 1;
     //dx es igual a dy
     double dx = 1;
     //
-    double dt = 0.001;
+    double dt = 0.0001;
+    //double dt = (dx*dx)/(v*2);
     double Tc = 100.0;
     double Ta = 50.0;
 
@@ -50,19 +52,19 @@ int main () {
 
     double t = 0;
     //Generar recorrido
-    while(t <2500){
-        for(int i=0; i<T.size();i++){
-            for(int k=1; T[i].size();k++){
-                //Tf[i][k] = 
-                //Uf[k] = U[k] - c*(dt/dx)*(U[k]-U[k-1]);
-	        //cout << X[k] <<  " " << Uf[k] << endl;
+    while(t <10){
+        for(int i=1; i<T.size()-1;i++){
+            for(int k=1; T[i].size()-1;k++){
+                Tf[i][k] = T[i][k] + (a*v)*(T[i][k-1] + T[i-1][k] - 4*T[i][k] +T[i+1][k] +T[i][k+1]);
+          	cout << Tf[i][k] << " ";
             }
-            ///copy(Uf.begin(), Uf.end(), U.begin());
-        }
+           //copy(Tf.begin(), Tf.end(), T.begin());
 
+        }
+       
+     //cout << t << " ";
      t += dt;
     }
-
     
 return 0;
 }
